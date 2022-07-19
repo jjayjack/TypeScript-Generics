@@ -28,4 +28,19 @@ const mergedObj = merge(
   { name: "Max", hobbies: ["Sports", "Cars"] },
   { age: 30 }
 );
-console.log(mergedObj);
+// console.log(mergedObj);
+
+// Generic Function
+interface Lengthy {
+  length: number;
+}
+function countAndDescribe<T extends Lengthy>(element: T): [T, string] {
+  let descriptionText = "Has no value.";
+  if (element.length === 1) {
+    descriptionText = "Has 1 value.";
+  } else if (element.length > 1) {
+    descriptionText = "Has " + element.length + " elements.";
+  }
+  return [element, descriptionText];
+}
+console.log(countAndDescribe(["Sports", "Cooking"]));
