@@ -7,7 +7,7 @@ const promise: Promise<string> = new Promise((resolve, reject) => {
 });
 */
 // Generic Function
-function merge<T, U>(objA: T, objB: U) {
+/*function merge<T, U>(objA: T, objB: U) {
   return Object.assign(objA, objB);
 }
 console.log(merge({ name: "max" }, { age: 25 }));
@@ -19,3 +19,13 @@ const mergedObject2 = merge<{ name: string; hobby: string[] }, { age: number }>(
   { age: 27 }
 );
 console.log(mergedObject2);
+*/
+// Generic Type Constraints
+function merge<T extends object, U extends object>(objA: T, objB: U) {
+  return Object.assign(objA, objB);
+}
+const mergedObj = merge(
+  { name: "Max", hobbies: ["Sports", "Cars"] },
+  { age: 30 }
+);
+console.log(mergedObj);
