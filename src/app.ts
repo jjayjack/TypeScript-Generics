@@ -86,3 +86,25 @@ objStorage.addItem({ name: "Travis" });
 objStorage.removeItem({ name: "Max" });
 console.log(objStorage.getItems());
 */
+
+// Built in TypeScript Generic Type: Utility
+interface CourseGoal {
+  title: string;
+  description: string;
+  completeUntil: Date;
+}
+// Sets up Partial
+function createCourseGoal(
+  title: string,
+  description: string,
+  date: Date
+): CourseGoal {
+  let courseGoal: Partial<CourseGoal> = {};
+  courseGoal.title = title;
+  courseGoal.description = description;
+  courseGoal.completeUntil = date;
+  return courseGoal as CourseGoal;
+}
+// ReadOnly Utility
+const names: Readonly<string[]> = ["Max", "Sarah"];
+// names.push("Manuel");
