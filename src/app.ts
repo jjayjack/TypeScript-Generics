@@ -54,13 +54,29 @@ function extractAndConvert<T extends Object, U extends keyof T>(
 }
 extractAndConvert({ name: "Max" }, "name");
 
-// Generic Classes
+// Generic Classes - Will only accept a set datatype - lock in a type
 class DataStorage<T extends string | number | boolean> {
   private data: T[] = [];
   addItem(item: T) {
     this.data.push(item);
   }
   removeItem(item: T) {
+    if (this.data.indexOf(item) === -1) {
+      return;
+    }
+    this.data.splice(this.data.indexOf(item), 1);
+  }
+  getItems() {
+    return [...this.data];
+  }
+}
+// Union vs Generic -- same as above BUT as Union - using UNION will be read as this will accept any of these datatypes - flexible for any method type
+class UnionDataStorage {
+  private data: (string | number | boolean)[] = [];
+  addItem(item: string | number | boolean) {
+    this.data.push(item);
+  }
+  removeItem(item: string | number | boolean) {
     if (this.data.indexOf(item) === -1) {
       return;
     }
